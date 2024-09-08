@@ -1,0 +1,152 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    padding: 40px;
+    margin: 0;
+}
+
+.timeline-container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.timeline-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    /* Initial state for animation */
+}
+
+img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-right: 20px;
+
+}
+
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding-top: 20px;
+    overflow: hidden;
+    margin: 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 50px;
+    right: 50px;
+    height: 2px;
+    background-color: #ddd;
+    z-index: 1;
+}
+
+.progress-line {
+    position: absolute;
+    top: 28px;
+    left: 50px;
+    height: 2px;
+    background-color: #3498db;
+    z-index: 2;
+    width: 0;
+    /* Initial width */
+    transition: width 0.5s ease;
+    /* Smooth transition */
+}
+
+.timeline-item {
+    position: relative;
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    z-index: 3;
+    opacity: 0.5;
+
+}
+
+.timeline-item::before {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: #ddd;
+    border: 3px solid #ddd;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    transition: all 0.3s ease;
+}
+
+.timeline-item.active {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.timeline-item.active::before {
+    background-color: #3498db;
+    /* Active color */
+    border-color: #3498db;
+}
+
+.timeline-item span {
+    font-size: 14px;
+    color: #666;
+    display: block;
+    margin-top: 5px;
+    transition: color 0.3s ease;
+}
+
+.timeline-item.active span {
+    color: #000;
+}
+
+.timeline-item:hover::before,
+.timeline-item:hover span {
+    color: #3498db;
+    /* background-color: #3498db; */
+    border-color: #3498db;
+}
+
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Bounce animation for timeline items */
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
